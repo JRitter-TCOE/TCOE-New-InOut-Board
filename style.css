@@ -21,6 +21,16 @@ body {
     height: 64px;
 }
 
+ion-icon {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+label {
+    font-weight: bold;
+    color: white;
+}
+
 .row {
     display: flex;
     justify-content: space-between;
@@ -30,7 +40,8 @@ body {
     border: 2px solid black;
     border-radius: 5px;
     padding: 16px;
-    width: 400px;
+    min-width: 400px;
+    flex: 1;
 }
 
 .staffName {

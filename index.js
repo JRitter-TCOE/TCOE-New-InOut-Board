@@ -1,6 +1,10 @@
 const header = document.getElementById('header');
 const app = document.getElementById('app');
 
+let staffLocations = null;
+
+let searchTerm = '';
+
 
 async function fetchSheetData() {
   // Replace with your actual Google Sheet ID
@@ -28,7 +32,7 @@ async function fetchSheetData() {
     });
 
     console.log('Clean Spreadsheet Data:', cleanData);
-    return cleanData.slice(1, cleanData.length);
+    staffLocations = cleanData.slice(1, cleanData.length);
 
   } catch (error) {
     console.error('Error fetching data from Google Sheet:', error);
@@ -64,24 +68,37 @@ function createStaffCard(staffName, plannedLocations, currentLocation) {
 
 function createSearchBar() {
     const search = document.createElement('input');
-    search.classList.add('staffSearch');
+    search.id = 'staffSearch';
+    search.oninput = (e) => {
+        searchTerm = search.value;
+        renderBoard();
+    } 
     return search;
 }
 
 function populateHeader() {
+    const searchLabel = document.createElement('label');
+    searchLabel.setAttribute('for', 'staffSearch');
+    searchLabel.innerHTML = '<ion-icon name="search-outline"></ion-icon>';
     const search = createSearchBar();
-    header.append(search);
+    header.append(searchLabel, search);
 }
 
-async function populateBoard() {
-    const staffLocations = await fetchSheetData();
-
+async function renderBoard() {
+    app.innerHTML = '';
     for (let x of staffLocations) {
-        const staffCard = createStaffCard(x[0], x[1], 'N/A');
-        app.append(staffCard);
+        if (x[0].toLowerCase().includes(searchTerm.toLowerCase())) {
+            const staffCard = createStaffCard(x[0], x[1], 'N/A');
+            app.append(staffCard);
+        }
     }
 
 }
 
-populateHeader();
-populateBoard();
+async function initApp() {
+    await fetchSheetData();
+    populateHeader();
+    renderBoard();
+}
+
+initApp();
