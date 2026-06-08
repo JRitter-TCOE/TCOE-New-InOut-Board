@@ -1,9 +1,15 @@
+import { getAvailableLocations } from "./Requests/getAvailableLocations.js";
+import { postData } from "./Requests/postData.js";
+import { setStaff } from "./Requests/setStaff.js";
+
 const header = document.getElementById('header');
 const app = document.getElementById('app');
+const aside = document.getElementById('aside');
+
 
 let staffLocations = null;
-
 let searchTerm = '';
+let selectedStaff = null;
 
 
 async function fetchSheetData() {
@@ -39,10 +45,25 @@ async function fetchSheetData() {
   }
 }
 
+function getStaffNames() {
+    const names = [];
+    
+    for (let x of staffLocations) {
+        names.push(x[0]);
+    }
+
+    return names;
+}
+
 
 function createStaffCard(staffName, plannedLocations, currentLocation) {
     const card = document.createElement('div');
     card.classList.add('staffCard');
+
+    card.onclick = () => {
+        aside.classList.add('active');
+        selectedStaff = null;
+    }
 
     const nameField = document.createElement('p');
     nameField.classList.add('staffName');
@@ -95,10 +116,40 @@ async function renderBoard() {
 
 }
 
+function createAsideCloseBtn() {
+    const closeBtn = document.createElement('button');
+    closeBtn.id = 'closeBtn';
+    closeBtn.innerHTML = 'X';
+    closeBtn.onclick = () => {
+        aside.classList.remove('active');
+    }
+
+    return closeBtn;
+}
+
+function createLocationList() {
+    const locList = document.createElement('div');
+    locList.id = 'locList';
+
+}
+
+function populateAside() {
+    const closeBtn = createAsideCloseBtn();
+
+    aside.append(closeBtn);
+}
+
 async function initApp() {
     await fetchSheetData();
     populateHeader();
+    populateAside();
     renderBoard();
+    getAvailableLocations();
+}
+
+async function testDB() {
+    const result = await postData('./API/db_connect.php');
+    console.log(result);
 }
 
 initApp();
