@@ -12,9 +12,11 @@ export async function postData(url='', data={}) {
             throw new Error(`HTTP Error! Status: ${response.status}`);
         }
 
+        //console.log(await response.text());
+
         const result = await response.json();
         console.log('Success:', result);
-        return result;
+        return result.data;
     }
     catch (error) {
         console.error("Error:", error);

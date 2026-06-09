@@ -1,4 +1,5 @@
 <?php
+    // This script returns a list of all available locations from DB
 
     $db = new SQLite3('../TCOE_InOut_Board.db');
 
@@ -10,6 +11,6 @@
         array_push($response, $row);
     }
 
-    echo json_encode(['response'=>$response]);
+    echo json_encode(['data'=>$response]);
 
 ?>

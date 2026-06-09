@@ -1,5 +1,6 @@
-<?php
 
+<?php
+    // This script sets/resets all staff in the DB 
     $db = new SQLite3('../TCOE_InOut_Board.db');
 
     $json = file_get_contents('php://input');
@@ -21,6 +22,6 @@
 
     }
 
-    echo json_encode(["response"=>'Staff Added Successfully!']);
+    echo json_encode(["data"=>'Staff Added Successfully!']);
 
 ?>

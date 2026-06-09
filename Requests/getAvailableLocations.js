@@ -1,6 +1,7 @@
 import { getData } from "./getData.js";
 
 export async function getAvailableLocations() {
-    const response = await getData('./API/getAvailableLocations.php');
-    console.log(response);
+    const data = await getData('./API/getAvailableLocations.php');
+    console.log(data);
+    return data;
 }

@@ -14,7 +14,7 @@ export async function getData(url='') {
 
         const result = await response.json();
         console.log('Success:', result);
-        return result;
+        return result.data;
     }
     catch (error) {
         console.error("Error:", error);

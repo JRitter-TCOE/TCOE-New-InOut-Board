@@ -1,3 +1,9 @@
+
+:root {
+    --primary: rgb(6, 99, 6);
+}
+
+
 #app {
     display: flex;
     flex-wrap: wrap;
@@ -10,10 +16,11 @@
     position: fixed;
     right: 0px;
     top: 0px;
-    background-color: white;
+    background-color: var(--primary);
     border: 2px solid black;
     width: 0px;
     height: 100vh;
+    transition: width 0.1s ease-in-out;
 }
 
 #aside.active {
@@ -25,12 +32,13 @@ body {
 }
 
 #closeBtn {
-    padding: 16px;
-    color: white;
-    background-color: red;
     font-weight: bold;
+    font-size: 18pt;
+    border: 2px solid black;
     border-radius: 5px;
     margin: 16px;
+    width: 32px;
+    height: 32px;
 }
 
 #header {
@@ -38,7 +46,7 @@ body {
     position: fixed;
     justify-content: center;
     align-items: center;
-    background-color: green;
+    background-color: var(--primary);
     top: 0px;
     left: 0px;
     width: 100%;
@@ -55,6 +63,17 @@ label {
     color: white;
 }
 
+.loc {
+    font-weight: bold;
+    padding: 8px;
+}
+
+#locList {
+    display: flex;
+    flex-direction: column;
+}
+
+
 .row {
     display: flex;
     justify-content: space-between;
@@ -63,9 +82,13 @@ label {
 .staffCard {
     border: 2px solid black;
     border-radius: 5px;
-    padding: 16px;
+    padding: 8px;
     min-width: 400px;
     flex: 1;
+}
+
+.staffCard p {
+    margin: 0px;
 }
 
 .staffName {

@@ -1,5 +1,6 @@
 import { getAvailableLocations } from "./Requests/getAvailableLocations.js";
 import { postData } from "./Requests/postData.js";
+import { setLocation } from "./Requests/setLocation.js";
 import { setStaff } from "./Requests/setStaff.js";
 
 const header = document.getElementById('header');
@@ -7,6 +8,7 @@ const app = document.getElementById('app');
 const aside = document.getElementById('aside');
 
 
+let staffSchedules = null;
 let staffLocations = null;
 let searchTerm = '';
 let selectedStaff = null;
@@ -37,8 +39,7 @@ async function fetchSheetData() {
       return row.c.map(cell => cell ? cell.v : null);
     });
 
-    console.log('Clean Spreadsheet Data:', cleanData);
-    staffLocations = cleanData.slice(1, cleanData.length);
+    staffSchedules = cleanData.slice(1, cleanData.length);
 
   } catch (error) {
     console.error('Error fetching data from Google Sheet:', error);
@@ -48,7 +49,7 @@ async function fetchSheetData() {
 function getStaffNames() {
     const names = [];
     
-    for (let x of staffLocations) {
+    for (let x of staffSchedules) {
         names.push(x[0]);
     }
 
@@ -62,7 +63,7 @@ function createStaffCard(staffName, plannedLocations, currentLocation) {
 
     card.onclick = () => {
         aside.classList.add('active');
-        selectedStaff = null;
+        selectedStaff = staffName;
     }
 
     const nameField = document.createElement('p');
@@ -71,11 +72,11 @@ function createStaffCard(staffName, plannedLocations, currentLocation) {
 
     const plannedField = document.createElement('p');
     plannedField.classList.add('plannedLocations');
-    plannedField.innerHTML = '<strong>Scheduled:</strong> ' + plannedLocations;
+    plannedField.innerHTML = '<ion-icon name="calendar-outline"></ion-icon> ' + plannedLocations;
 
     const currentField = document.createElement('p');
     currentField.classList.add('currentLocation');
-    currentField.innerHTML = '<strong>Current:</strong> ' + currentLocation;
+    currentField.innerHTML = '<ion-icon name="location-outline"></ion-icon> ' + currentLocation;
 
     const row = document.createElement('div');
     row.classList.add('row');
@@ -107,7 +108,7 @@ function populateHeader() {
 
 async function renderBoard() {
     app.innerHTML = '';
-    for (let x of staffLocations) {
+    for (let x of staffSchedules) {
         if (x[0].toLowerCase().includes(searchTerm.toLowerCase())) {
             const staffCard = createStaffCard(x[0], x[1], 'N/A');
             app.append(staffCard);
@@ -127,9 +128,35 @@ function createAsideCloseBtn() {
     return closeBtn;
 }
 
-function createLocationList() {
+function createLocButton(loc) {
+    const btn = document.createElement('button');
+    btn.classList.add('loc');
+    btn.innerText = loc.Name;
+    btn.style.backgroundColor = loc.Color;
+    btn.style.color = `contrast-color(${loc.Color})`;
+    
+    btn.onclick = async () => {
+        aside.classList.remove('active');
+        const result = await setLocation(selectedStaff, loc.Name);
+        await fetchSheetData();
+        renderBoard();
+    };
+    
+    return btn;
+}
+
+async function createLocationList() {
     const locList = document.createElement('div');
     locList.id = 'locList';
+
+    const locations = await getAvailableLocations();
+
+    for (let loc of locations) {
+        const btn = createLocButton(loc);
+        locList.append(btn);
+    }
+
+    aside.append(locList);
 
 }
 
@@ -144,12 +171,8 @@ async function initApp() {
     populateHeader();
     populateAside();
     renderBoard();
-    getAvailableLocations();
+    createLocationList();
 }
 
-async function testDB() {
-    const result = await postData('./API/db_connect.php');
-    console.log(result);
-}
 
 initApp();
