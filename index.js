@@ -62,12 +62,6 @@ function createStaffCard(staffName, plannedLocations, currentLocation) {
     const card = document.createElement('div');
     card.classList.add('staffCard');
 
-    card.onclick = async () => {
-        await setLocation(staffName, 'TCOE Main Office');
-        staffLocations = await getStaffLocations();
-        renderBoard();
-    }
-
     const nameField = document.createElement('p');
     nameField.classList.add('staffName');
     nameField.innerHTML = staffName;
@@ -80,7 +74,14 @@ function createStaffCard(staffName, plannedLocations, currentLocation) {
     currentField.classList.add('currentLocation');
     currentField.innerHTML = '<ion-icon name="location-outline"></ion-icon> ' + currentLocation;
 
-    currentField.onclick = () => {
+    card.onclick = async () => {
+        await setLocation(staffName, currentLocation == 'TCOE Main Office' ? 'Out' : 'TCOE Main Office');
+        staffLocations = await getStaffLocations();
+        renderBoard();
+    }
+
+    currentField.onclick = (e) => {
+        e.stopPropagation();
         aside.classList.add('active');
         selectedStaff = staffName;
     }
@@ -175,7 +176,7 @@ function populateAside() {
 
 async function initApp() {
     await fetchSheetData();
-    await setStaff(getStaffNames());
+    await setStaff(getStaffNames()); //Resets DB on reload
     staffLocations = await getStaffLocations();
     populateHeader();
     populateAside();
