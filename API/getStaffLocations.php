@@ -1,9 +1,8 @@
 <?php
-    // This script returns a list of all available locations from DB
 
     $db = new SQLite3('../TCOE_InOut_Board.db');
 
-    $results = $db->query('SELECT * FROM Locations');
+    $results = $db->query('SELECT * FROM Staff_Locations');
 
     $response = [];
 
@@ -14,5 +13,6 @@
     echo json_encode(['data'=>$response]);
 
     $db->close();
+
 
 ?>

@@ -1,4 +1,5 @@
 export async function getData(url='') {
+
     try {
         const response = await fetch(url, {
             method: "GET",
@@ -11,12 +12,15 @@ export async function getData(url='') {
             throw new Error(`HTTP Error! Status: ${response.status}`);
         }
 
+        const responseClone = response.clone();
+        console.log(await responseClone.text());
 
         const result = await response.json();
-        console.log('Success:', result);
+        //console.log('Success:', result);
         return result.data;
     }
     catch (error) {
-        console.error("Error:", error);
+        console.error("Error:", error.message);
+        console.log(await response);
     }
 }

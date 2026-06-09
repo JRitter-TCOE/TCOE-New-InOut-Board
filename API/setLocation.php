@@ -14,4 +14,7 @@
     $stmt->execute();
 
     echo json_encode(['data'=>$location]);
+
+    $db->close();
+
 ?>

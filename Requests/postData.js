@@ -12,13 +12,15 @@ export async function postData(url='', data={}) {
             throw new Error(`HTTP Error! Status: ${response.status}`);
         }
 
-        //console.log(await response.text());
+        const responseClone = response.clone();
+        console.log(await responseClone.text());
+
 
         const result = await response.json();
-        console.log('Success:', result);
+        //console.log('Success:', result);
         return result.data;
     }
     catch (error) {
-        console.error("Error:", error);
+        console.error("Error:", error.message);
     }
 }

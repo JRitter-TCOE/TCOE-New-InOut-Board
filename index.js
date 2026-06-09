@@ -1,4 +1,5 @@
 import { getAvailableLocations } from "./Requests/getAvailableLocations.js";
+import { getStaffLocations } from "./Requests/getStaffLocations.js";
 import { postData } from "./Requests/postData.js";
 import { setLocation } from "./Requests/setLocation.js";
 import { setStaff } from "./Requests/setStaff.js";
@@ -61,9 +62,10 @@ function createStaffCard(staffName, plannedLocations, currentLocation) {
     const card = document.createElement('div');
     card.classList.add('staffCard');
 
-    card.onclick = () => {
-        aside.classList.add('active');
-        selectedStaff = staffName;
+    card.onclick = async () => {
+        await setLocation(staffName, 'TCOE Main Office');
+        staffLocations = await getStaffLocations();
+        renderBoard();
     }
 
     const nameField = document.createElement('p');
@@ -77,6 +79,11 @@ function createStaffCard(staffName, plannedLocations, currentLocation) {
     const currentField = document.createElement('p');
     currentField.classList.add('currentLocation');
     currentField.innerHTML = '<ion-icon name="location-outline"></ion-icon> ' + currentLocation;
+
+    currentField.onclick = () => {
+        aside.classList.add('active');
+        selectedStaff = staffName;
+    }
 
     const row = document.createElement('div');
     row.classList.add('row');
@@ -110,7 +117,7 @@ async function renderBoard() {
     app.innerHTML = '';
     for (let x of staffSchedules) {
         if (x[0].toLowerCase().includes(searchTerm.toLowerCase())) {
-            const staffCard = createStaffCard(x[0], x[1], 'N/A');
+            const staffCard = createStaffCard(x[0], x[1], staffLocations[x[0]]);
             app.append(staffCard);
         }
     }
@@ -138,7 +145,7 @@ function createLocButton(loc) {
     btn.onclick = async () => {
         aside.classList.remove('active');
         const result = await setLocation(selectedStaff, loc.Name);
-        await fetchSheetData();
+        staffLocations = await getStaffLocations();
         renderBoard();
     };
     
@@ -168,6 +175,8 @@ function populateAside() {
 
 async function initApp() {
     await fetchSheetData();
+    await setStaff(getStaffNames());
+    staffLocations = await getStaffLocations();
     populateHeader();
     populateAside();
     renderBoard();

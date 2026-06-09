@@ -16,12 +16,15 @@
         $stmt = $db->prepare($sql);
 
         $stmt->bindValue(':Full_Name', $member, SQLITE3_TEXT);
-        $stmt->bindValue(':Current_Location', 'N/A', SQLITE3_TEXT);
+        $stmt->bindValue(':Current_Location', 'Out', SQLITE3_TEXT);
 
         $stmt->execute();
 
     }
 
     echo json_encode(["data"=>'Staff Added Successfully!']);
+
+    $db->close();
+
 
 ?>
