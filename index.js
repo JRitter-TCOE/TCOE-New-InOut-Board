@@ -116,6 +116,7 @@ function populateHeader() {
 
 async function renderBoard() {
     app.innerHTML = '';
+    let i = 0;
     for (let x of staffSchedules) {
         if (x[0].toLowerCase().includes(searchTerm.toLowerCase())) {
             const staffCard = createStaffCard(x[0], x[1], staffLocations[x[0]]);

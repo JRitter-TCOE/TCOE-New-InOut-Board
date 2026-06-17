@@ -9,6 +9,7 @@
     flex-wrap: wrap;
     font-family: sans-serif;
     margin-top: 64px;
+    align-items: center;
 }
 
 #aside {
@@ -51,6 +52,7 @@ body {
     left: 0px;
     width: 100%;
     height: 64px;
+    z-index: 1;
 }
 
 ion-icon {
@@ -73,18 +75,49 @@ label {
     flex-direction: column;
 }
 
+.plannedLocations {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 
 .row {
     display: flex;
     justify-content: space-between;
 }
 
+.rowWrap {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
 .staffCard {
+    box-sizing: border-box;
     border: 2px solid black;
     border-radius: 5px;
     padding: 8px;
-    min-width: 400px;
-    flex: 1;
+}
+
+@media screen and (width < 1000px) {
+    .staffCard {
+        width: 50%;
+    }
+}
+
+
+@media screen and (1000px <= width < 1500px) {
+    .staffCard {
+        width: 25%;
+    }
+}
+
+@media screen and (width >= 1500px) {
+    .staffCard {
+        width: 20%;
+    }
 }
 
 .staffCard p {
@@ -93,4 +126,5 @@ label {
 
 .staffName {
     font-weight: bold;
+    min-width: 30%;
 }
