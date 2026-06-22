@@ -1,7 +1,8 @@
 
 :root {
-    --primary: rgb(6, 99, 6);
+    --primary: #236281;
     --secondary: #b4b4b4;
+    --accent: #1c4e67;
     --headerHeight: 96px;
 }
 
@@ -36,6 +37,15 @@ body {
     background-color: var(--secondary);
 }
 
+
+.btn {
+    padding: 8px;
+    color: white;
+    background-color: var(--accent);
+    font-weight: bold;
+    font-size: 14pt;
+}
+
 #closeBtn {
     font-weight: bold;
     font-size: 18pt;
@@ -50,6 +60,37 @@ body {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.customForm {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px;
+    width: 30vw;
+    background-color: var(--primary);
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.customForm .row {
+    width: 100%;
+}
+
+.formField {
+    padding: 8px;
+    margin-bottom: 16px;
+}
+
+.formFieldContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.formLabel {
+    color: white;
 }
 
 #header {
@@ -95,6 +136,18 @@ label {
 .logoText {
     color: white;
 }
+
+#modal {
+    box-sizing: border-box;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
 
 .plannedLocations {
     flex: 1;
@@ -161,3 +214,4 @@ label {
 .spacer {
     flex: 1;
 }
+

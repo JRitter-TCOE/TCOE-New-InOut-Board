@@ -7,8 +7,6 @@ export async function createLocationList() {
     locList.id = 'locList';
 
     const locations = await getAvailableLocations();
-    console.log(locations);
-
 
     for (let l in locations) {
         const btn = createLocButton(l, locations[l]);

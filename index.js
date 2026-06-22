@@ -1,5 +1,6 @@
 import Control from "./Control.js";
 import { createLocationList } from "./customElements/locationList.js";
+import { createVisitorModal } from "./customElements/visitorModal.js";
 import { getStaffNames } from "./helperFunctions/getStaffNames.js";
 import { populateAside } from "./helperFunctions/populateAside.js";
 import { populateHeader } from "./helperFunctions/populateHeader.js";
@@ -16,6 +17,7 @@ async function initApp() {
     populateHeader();
     populateAside();
     renderBoard();
+    createVisitorModal();
 }
 
 
