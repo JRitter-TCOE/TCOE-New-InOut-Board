@@ -17,6 +17,7 @@ export function createVisitorModal() {
 
     form.cancelBtn.onclick = () => {
         modal.style.display = 'none';
+        form.clearAllFields();
     }
 
     form.submitBtn.onclick = async () => {
@@ -24,6 +25,6 @@ export function createVisitorModal() {
         const visitor = form.getAllFieldValues();
         visitor['Time_In'] = date.toLocaleString();
         const result = await setVisitor(visitor);
-        console.log(result);
+        modal.style.display = 'none';
     }
 }

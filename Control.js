@@ -8,4 +8,5 @@ export default class Control {
     static staffLocations = null;
     static searchTerm = '';
     static selectedStaff = null;
+    static visitors = null;
     }

@@ -53,4 +53,10 @@ export default class CustomForm {
 
         return values;
     }
+
+    clearAllFields() {
+        for (let fieldId in this.fields) {
+            this.fields[fieldId].value = "";
+        }
+    }
 }

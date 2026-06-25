@@ -1,4 +1,5 @@
 import Control from "../Control.js";
+import { createAddVisitorBtn } from "../customElements/addVisitorBtn.js";
 import { createSearchBar } from "../customElements/searchBar.js";
 import { createVisitorBtn } from "../customElements/visitorBtn.js";
 
@@ -24,9 +25,10 @@ export function populateHeader() {
     searchContainer.classList.add('row');
     searchContainer.append(searchLabel, search);
 
-    const visitorBtn = createVisitorBtn();
+    const addVisitorBtn = createAddVisitorBtn();
+    const visitorBtn = createVisitorBtn(addVisitorBtn);
 
     
 
-    Control.header.append(logoContainer, searchContainer, visitorBtn);
+    Control.header.append(logoContainer, searchContainer, addVisitorBtn, visitorBtn);
 }

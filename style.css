@@ -56,6 +56,11 @@ body {
     height: 32px;
 }
 
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
 .currentLocation {
     white-space: nowrap;
     overflow: hidden;
@@ -68,7 +73,7 @@ body {
     flex-direction: column;
     align-items: center;
     padding: 32px;
-    width: 30vw;
+    width: 60vw;
     background-color: var(--primary);
     border: 2px solid black;
     border-radius: 5px;
@@ -211,7 +216,18 @@ label {
     text-overflow: ellipsis;
 }
 
+
 .spacer {
     flex: 1;
 }
 
+.visitorCard {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 8px;
+    flex: 1;
+}
