@@ -4,6 +4,7 @@ import { renderVisitors } from "../helperFunctions/renderVisitors.js";
 export function createVisitorBtn(addVisitorBtn) {
     const btn = document.createElement('button');
     btn.classList.add('btn');
+    btn.id = 'visitorBtn';
     btn.innerText = 'Visitors';
     const modal = document.getElementById('modal');
 

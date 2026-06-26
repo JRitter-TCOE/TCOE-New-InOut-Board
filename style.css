@@ -26,6 +26,7 @@
     width: 0px;
     height: 100vh;
     transition: width 0.1s ease-in-out;
+    z-index: 5;
 }
 
 #aside.active {
@@ -35,6 +36,7 @@
 body {
     margin: 0px;
     background-color: var(--secondary);
+    font-family: sans-serif;
 }
 
 
@@ -110,7 +112,7 @@ body {
     width: 100%;
     height: var(--headerHeight);
     z-index: 1;
-    padding: 8px;
+    padding: 16px;
 }
 
 ion-icon {
@@ -229,5 +231,5 @@ label {
     border: 2px solid black;
     border-radius: 5px;
     padding: 8px;
-    flex: 1;
+    width: 100%;
 }

@@ -6,7 +6,7 @@
 
     $name = $data['name'];
     $location = $data['location'];
-
+    
     $sql = 'UPDATE Staff_Locations SET Current_Location = :location WHERE Full_Name = :name';
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':location', $location);

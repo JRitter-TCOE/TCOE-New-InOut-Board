@@ -6,7 +6,6 @@ import { getAllVisitors } from "../Requests/getAllVisitors.js";
 export async function renderVisitors() {
     const visitors = Control.visitors;
     Control.app.innerHTML = '';
-    console.log(visitors);
 
     for (let v of visitors) {
         const card = createVisitorCard(v);

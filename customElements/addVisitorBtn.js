@@ -2,7 +2,7 @@ export function createAddVisitorBtn() {
     const btn = document.createElement('button');
     btn.classList.add('btn');
     btn.id = 'addVisitorBtn';
-    btn.innerText = 'Add Visitor';
+    btn.innerText = 'Visitor Sign-In';
     btn.style.display = 'none';
 
     btn.onclick = () => {

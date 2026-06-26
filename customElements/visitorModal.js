@@ -1,4 +1,6 @@
 import Control from "../Control.js";
+import { renderVisitors } from "../helperFunctions/renderVisitors.js";
+import { getAllVisitors } from "../Requests/getAllVisitors.js";
 import { setVisitor } from "../Requests/setVisitor.js";
 import CustomForm from "./CustomForm.js";
 
@@ -26,5 +28,8 @@ export function createVisitorModal() {
         visitor['Time_In'] = date.toLocaleString();
         const result = await setVisitor(visitor);
         modal.style.display = 'none';
+        form.clearAllFields();
+        Control.visitors = await getAllVisitors();
+        renderVisitors();
     }
 }

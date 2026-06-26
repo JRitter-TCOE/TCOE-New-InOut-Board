@@ -5,11 +5,11 @@
     $json = file_get_contents('php://input');
     $data = (array) json_decode($json);
 
-    $Full_Name = $data['Full_Name'];
-    $Organization = $data['Organization'];
+    $Full_Name = trim(htmlspecialchars((strip_tags($data['Full_Name']))));
+    $Organization = trim(htmlspecialchars((strip_tags($data['Organization']))));
     $Time_In = $data['Time_In'];
-    $Visiting = $data['Visiting'];
-    $Add_With = $data['Add_With'];
+    $Visiting = trim(htmlspecialchars((strip_tags($data['Visiting']))));
+    $Add_With = trim(htmlspecialchars((strip_tags($data['Add_With']))));
 
     $sql = 'INSERT INTO Visitors (Full_Name, Organization, Time_In, Visiting, Add_With) VALUES (:Full_Name, :Organization, :Time_In, :Visiting, :Add_With)';
     $stmt = $db->prepare($sql);
