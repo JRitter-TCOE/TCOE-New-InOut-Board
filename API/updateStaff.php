@@ -1,5 +1,9 @@
 <?php
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 $csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR56lAVBbeUxdEE58m1NDq4119y-srA1kObRNQ4TI8zS9h3tbgdWHNYIzENlRyJ_xOfqJFzr6K9-QlL/pub?gid=0&single=true&output=csv";
 
 $staff = [];
