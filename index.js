@@ -13,7 +13,7 @@ import { setStaff } from "./Requests/setStaff.js";
 
 async function initApp() {
     Control.staffSchedules = await fetchSheetData();
-    //await setStaff(getStaffNames()); //Resets staff current location in DB on reload for testing
+    await setStaff(getStaffNames()); //Resets staff current location in DB on reload for testing
     Control.staffLocations = await getStaffLocations();
     Control.visitors = await getAllVisitors();
     populateHeader();
