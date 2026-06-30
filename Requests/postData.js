@@ -12,8 +12,8 @@ export async function postData(url='', data={}) {
             throw new Error(`HTTP Error! Status: ${response.status}`);
         }
 
-        //const responseClone = response.clone();
-        //console.log(await responseClone.text());
+        const responseClone = response.clone();
+        console.log(await responseClone.text());
 
 
         const result = await response.json();
