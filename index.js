@@ -15,7 +15,6 @@ import { testUpdateStaff } from "./Requests/testUpdateStaff.js";
 async function initApp() {
     Control.staffSchedules = await fetchSheetData();
     //await setStaff(getStaffNames()); //Resets staff current location in DB on reload for testing
-    await testUpdateStaff();
     Control.staffLocations = await getStaffLocations();
     Control.visitors = await getAllVisitors();
     populateHeader();

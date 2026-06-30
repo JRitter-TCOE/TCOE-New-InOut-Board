@@ -1,8 +1,6 @@
 <?php
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+// This is only for use by CRON on the server
 
 $csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR56lAVBbeUxdEE58m1NDq4119y-srA1kObRNQ4TI8zS9h3tbgdWHNYIzENlRyJ_xOfqJFzr6K9-QlL/pub?gid=0&single=true&output=csv";
 
@@ -18,7 +16,7 @@ if (($handle = fopen($csvUrl, "r")) !== FALSE) {
 array_shift($staff);
 
  // This script sets/resets all staff in the DB 
-    $db = new SQLite3('../TCOE_InOut_Board.db');
+    $db = new SQLite3('/var/www/inout.tcoek12.org/TCOE_InOut_Board.db');
 
     $sql = 'DELETE FROM Staff_Locations';
     $stmt = $db->prepare($sql);
