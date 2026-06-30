@@ -6,9 +6,6 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 
-echo "SQLite3 loaded: " . (extension_loaded('sqlite3') ? 'Yes' : 'No') . "<br>";
-echo "PDO SQLite loaded: " . (extension_loaded('pdo_sqlite') ? 'Yes' : 'No');
-
     // This script sets/resets all staff in the DB 
     $db = new SQLite3('../TCOE_InOut_Board.db');
 
