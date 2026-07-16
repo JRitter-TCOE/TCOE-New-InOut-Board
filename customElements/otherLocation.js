@@ -1,6 +1,6 @@
 import Control from "../Control.js";
-import { renderBoard } from "../helperFunctions/renderBoard";
-import { getStaffLocations } from "../Requests/getStaffLocations";
+import { renderBoard } from "../helperFunctions/renderBoard.js";
+import { getStaffLocations } from "../Requests/getStaffLocations.js";
 import { setLocation } from "../Requests/setLocation.js";
 
 export function createOtherLocationSection() {
