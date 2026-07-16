@@ -34,7 +34,10 @@ array_shift($staff);
 
     }
 
-    echo json_encode(["data"=>'Staff Added Successfully!']);
+    $now = new DateTimeImmutable();
+
+
+    echo json_encode(["data"=>$now->format('Y-m-d H:i:s').' '.'Staff Added Successfully!']);
 
     $db->close();
 
