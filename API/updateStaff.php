@@ -6,6 +6,7 @@ $csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR56lAVBbeUxdEE58m1ND
 
 $staff = [];
 
+// Fetch data from google sheet
 if (($handle = fopen($csvUrl, "r")) !== FALSE) {
     while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
         $staff[] = $data[0]; 
