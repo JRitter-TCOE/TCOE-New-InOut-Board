@@ -1,0 +1,6 @@
+
+// Run in terminal to ignore local db changes for git
+git update-index --skip-worktree TCOE_InOut_Board.db
+
+// Run in terminal to resume tracking local db changes for git
+git update-index --no-skip-worktree TCOE_InOut_Board.db
