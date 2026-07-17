@@ -26,7 +26,7 @@ export function populateHeader() {
     searchContainer.append(searchLabel, search);
 
     const addVisitorBtn = createAddVisitorBtn();
-    const visitorBtn = createVisitorBtn(addVisitorBtn);
+    const visitorBtn = createVisitorBtn(addVisitorBtn, searchContainer);
 
     
 
