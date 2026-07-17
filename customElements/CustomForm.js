@@ -11,7 +11,11 @@ export default class CustomForm {
         const btnRow = document.createElement('div');
         btnRow.classList.add('row');
 
-        this.el.append(this.fieldContainer, btnRow);
+        this.feedback = document.createElement('p');
+        this.feedback.style.color = 'yellow';
+
+
+        this.el.append(this.fieldContainer, this.feedback, btnRow);
 
 
         this.cancelBtn = document.createElement('button');
