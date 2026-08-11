@@ -18,6 +18,7 @@ export function populateHeader() {
 
     const searchLabel = document.createElement('label');
     searchLabel.setAttribute('for', 'staffSearch');
+    searchLabel.id = 'searchLabel';
     searchLabel.innerHTML = '<ion-icon name="search-outline"></ion-icon>';
     const search = createSearchBar();
 
