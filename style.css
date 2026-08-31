@@ -163,6 +163,7 @@ label {
 #otherLocContainer {
     flex: 1;
     justify-content: center;
+    margin-bottom: 16px;
 }
 
 #otherLocContainer > input {
@@ -192,10 +193,12 @@ label {
 }
 
 .staffCard {
+    display: block;
     box-sizing: border-box;
     border: 2px solid black;
     border-radius: 5px;
     padding: 8px;
+    width: 20%;
 }
 
 @media screen and (width < 700px) {
