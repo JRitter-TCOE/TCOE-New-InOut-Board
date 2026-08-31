@@ -10,8 +10,15 @@ export async function renderBoard() {
         if (x[0].toLowerCase().includes(Control.searchTerm.toLowerCase())) {
             const currentLoc = Control.staffLocations[x[0]];
             const staffCard = createStaffCard(x[0], x[1], currentLoc);
-            staffCard.style.backgroundColor = locations[currentLoc];
-            staffCard.style.color = `contrast-color(${locations[currentLoc]})`;
+            if (currentLoc) {
+                staffCard.style.backgroundColor = locations[currentLoc];
+                staffCard.style.color = `contrast-color(${locations[currentLoc]})`;
+            }
+            else {
+                staffCard.style.backgroundColor = 'black';
+                staffCard.style.color = `contrast-color(black)`;
+            }
+            console.log(locations[currentLoc])
             app.append(staffCard);
         }
     }
