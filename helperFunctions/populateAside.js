@@ -7,6 +7,6 @@ export async function populateAside() {
     const closeBtn = createAsideCloseBtn();
 
     Control.aside.append(closeBtn);
-    await createLocationList();
     createOtherLocationSection();
+    await createLocationList();
 }
