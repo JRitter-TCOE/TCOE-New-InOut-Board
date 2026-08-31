@@ -10,7 +10,8 @@ export async function renderBoard() {
         if (x[0].toLowerCase().includes(Control.searchTerm.toLowerCase())) {
             const currentLoc = Control.staffLocations[x[0]];
             const staffCard = createStaffCard(x[0], x[1], currentLoc);
-            if (currentLoc) {
+            if (currentLoc && locations[currentLoc]) {
+                console.log(currentLoc)
                 staffCard.style.backgroundColor = locations[currentLoc];
                 
                 const hexcolor = locations[currentLoc].slice(1);
@@ -25,9 +26,8 @@ export async function renderBoard() {
             }
             else {
                 staffCard.style.backgroundColor = 'black';
-                staffCard.style.color = `lightgrey`;
+                staffCard.style.color = `white`;
             }
-            console.log(locations[currentLoc])
             app.append(staffCard);
         }
     }
