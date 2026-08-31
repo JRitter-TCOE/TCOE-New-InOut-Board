@@ -12,11 +12,20 @@ export async function renderBoard() {
             const staffCard = createStaffCard(x[0], x[1], currentLoc);
             if (currentLoc) {
                 staffCard.style.backgroundColor = locations[currentLoc];
-                staffCard.style.color = `contrast-color(${locations[currentLoc]})`;
+                
+                const hexcolor = locations[currentLoc].slice(1);
+
+                const r = parseInt(hexcolor.substr(0, 2), 16);
+                const g = parseInt(hexcolor.substr(2, 2), 16);
+                const b = parseInt(hexcolor.substr(4, 2), 16);
+                
+                const yiq = (r * 299 + g * 587 + b * 114) / 1000;
+                const conColor =  yiq >= 128 ? '#000000' : '#ffffff';
+                staffCard.style.color = `${conColor}`;
             }
             else {
                 staffCard.style.backgroundColor = 'black';
-                staffCard.style.color = `contrast-color(black)`;
+                staffCard.style.color = `lightgrey`;
             }
             console.log(locations[currentLoc])
             app.append(staffCard);
